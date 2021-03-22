@@ -32,14 +32,14 @@ class Termynal {
     constructor(container = '#termynal', options = {}) {
         this.container = (typeof container === 'string') ? document.querySelector(container) : container;
         this.pfx = `data-${options.prefix || 'ty'}`;
-        this.startDelay = options.startdelay || {{ .Site.Data.terminal.startDelay }};
-        this.typeDelay = options.typedelay || {{ .Site.Data.terminal.typeDelay }};
-        this.lineDelay = options.linedelay || {{ .Site.Data.terminal.lineDelay }};
-        this.progressLength = options.progresslength || {{ .Site.Data.terminal.progressLength }};
+        this.startDelay = options.startdelay || 1000;
+        this.typeDelay = options.typedelay || 100;
+        this.lineDelay = options.linedelay || 200;
+        this.progressLength = options.progresslength || 0;
         this.progressChar = options.progresschar || '{{ .Site.Data.terminal.progressChar }}';
         this.progressPercent = options.progressPercent || 100;
         this.showPercent = ("showpercent" in options && options.showpercent)
-                           || (!"showpercent" in options && {{ .Site.Data.terminal.showPercent }});
+                           || (!"showpercent" in options && false);
         this.onExitCommand = options.onExitCommand;
         this.cursor = options.cursor || '▋';
         if (!options.noInit) this.init()
